@@ -1,0 +1,1 @@
+This 13Timer project is a web application that helps track the events of the user. It displays all the upcoming events of the user in order to keep the user up to date with his/her life. It also has a page that displays past events of the user. There is a feature that allows the user to add events to his/her watchlist so as to keep an eye on the events.
