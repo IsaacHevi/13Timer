@@ -1,0 +1,33 @@
+{% extends 'events/layout.html' %}
+
+{% block title %}{{ event.event_name }}{% endblock %}
+
+{% block status %}
+    <div class="navbar-nav me-auto mb-2 mb-lg-0">
+        <a href="{% url 'index' %}"><button class="btn btn-outline-success nav--button">Upcoming Events</button></a>
+        <a href="{% url 'past' %}"><button class="btn btn-outline-success nav--button">Past Events</button></a>
+        <a href="{% url 'watchlist' %}"><button class="btn btn-outline-success nav--button">Watchlist</button></a>
+    </div>
+{% endblock %}
+
+{% block body %}
+<h1 class="event--h1">{{ event.event_name }} details</h1>
+
+<div class="event--details">
+  <p><strong>Name:</strong> <span id="eventName">{{ event.event_name }}</span></p>
+  <p><strong>Date:</strong> <span id="eventDate">{{ event.event_date }}</span></p>
+  <p><strong>Time:</strong> <span id="eventTime">{{ event.event_time }}</span></p>
+  <p><strong>Location:</strong> <span id="eventLocation">{{ event.event_location }}</span></p>
+  <p><strong>Description:</strong> <span id="eventDescription">{{ event.event_description }}</span></p>
+
+  <button class="btn btn-outline-success event--button" onclick="goBack()">Go Back</button>
+  <a href="{% url 'delete' event.event_name %}"><button class="btn btn-outline-success event--button">Delete</button></a>
+</div>
+
+<script>
+  function goBack() {
+    window.history.back();
+  }
+</script>
+
+{% endblock %}

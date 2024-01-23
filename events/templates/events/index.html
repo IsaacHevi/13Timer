@@ -1,0 +1,44 @@
+{% extends 'events/layout.html' %}
+
+{% block title %}Upcoming Events{% endblock %}
+
+{% block status %}
+    <div class="navbar-nav me-auto mb-2 mb-lg-0">
+        <a href="{% url 'index' %}"><button class="btn btn-outline-success nav--button active">Upcoming Events</button></a>
+        <a href="{% url 'past' %}"><button class="btn btn-outline-success nav--button">Past Events</button></a>
+        <a href="{% url 'watchlist' %}"><button class="btn btn-outline-success nav--button">Watchlist</button></a>
+        {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}"><button class="btn btn-outline-success nav--button">Log Out</button></a>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block body %}
+    <h2 class="add--event--h1">Welcome, {{ user.username }}!</h2>
+    <div class="event--container">
+        {% if events %}
+            {% for event in events %}
+            <div class="event--card">
+                <h2>{{ event.event_name }}</h2>
+                <br>
+                <p class="description">{{ event.short_description }}...</p>
+                <br>
+                <p>Event Date: {{ event.event_datetime }}</p>
+                <p>Event Location: {{ event.event_location }}</p>
+                <div class="event--buttons">
+                    <a href="{% url 'event' event.event_name %}"><button class="btn btn-outline-success event--button details">Details</button></a>
+                    {% if event.status %}
+                    <a href="{% url 'remove_from_watchlist' event.event_name %}"><button class="btn btn-outline-success event--button add--to--watchlist">Remove from Watchlist</button></a>
+                    {% else %}
+                    <a href="{% url 'add_to_watchlist' event.event_name %}"><button class="btn btn-outline-success event--button add--to--watchlist">Add to Watchlist</button></a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+        <p class="the--message">Click the button below to add new event.</p>
+        {% endif %}
+    </div>
+    <a href="{% url 'create' %}"><button class="add--event--button">+</button></a>
+
+{% endblock %}

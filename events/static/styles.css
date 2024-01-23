@@ -1,0 +1,182 @@
+body {
+    font-family: Poppins;
+    background-color: #f7f1f1;
+    color: rgb(51, 111, 83);
+    margin: 0;
+    padding: 0;
+}
+
+.nav--bar {
+    display: flex;
+    justify-content: space-between;
+    background-color: blue;
+    width: 100%;
+    height: 125px;
+}
+
+.nav--button {
+    margin: 10px;
+    height: 50px;
+}
+
+.nav--button .active {
+    background-color: rgb(97, 152, 126);
+}
+
+.search--box {
+    height: 50px;
+    width: 300px;
+}
+
+.logo--text {
+    font-family: Anton;
+    color: rgb(97, 152, 126);
+    font-size: 48px;
+    margin-right: 15px;
+}
+
+
+.event--card {
+    background-color: #cef4da;
+    border-radius: 15px;
+    box-shadow: 5px 5px 3px rgb(97, 152, 126);
+    margin: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    width: calc(33.33% - 40px);
+    -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    float: left;
+    }
+
+.event--card:hover {
+    -webkit-transform: scale(0.5, 0.5);
+    transform: scale(1.05, 1.05);
+}
+
+    @media (max-width: 900px) {
+    .event--card {
+        width: calc(50% - 40px);
+    }
+    }
+
+    @media (max-width: 600px) {
+    .event--card {
+        width: calc(100% - 40px);
+    }
+    }
+.description {
+    font-size: smaller;
+    color: grey;
+}
+
+.event--button {
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.details {
+    background-color: rgb(58, 97, 79);
+    color: #cef4da;
+}
+
+.add--event--button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgb(97, 152, 126);
+    color: #cef4da;
+    border: none;
+    padding: 7px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 36px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.add--event--button:hover {
+    background-color:  rgb(58, 97, 79);
+}
+
+.add--event--h1 {
+    text-align: center;
+  }
+
+.add--event--form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.add--event--form > label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.add--event--form > input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+.add--event--form > button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.event--h1 {
+    text-align: center;
+}
+
+.event--details {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+
+.event--details > p {
+    margin-bottom: 15px;
+}
+
+.event--details > button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+a > .delete--button {
+    background-color: #4CAF50;
+    padding: 10px 20px;
+}
+
+.the--message {
+    text-align: center;
+}

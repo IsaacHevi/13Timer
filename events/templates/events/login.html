@@ -1,0 +1,29 @@
+{% extends 'events/layout.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block status %}
+    <div class="navbar-nav me-auto mb-2 mb-lg-0">
+        <a href="{% url 'index' %}"><button class="btn btn-outline-success nav--button">Upcoming Events</button></a>
+        <a href="{% url 'past' %}"><button class="btn btn-outline-success nav--button">Past Events</button></a>
+        <a href="{% url 'watchlist' %}"><button class="btn btn-outline-success nav--button">Watchlist</button></a>
+    </div>
+{% endblock %}
+
+{% block body %}
+    {% if message %}
+    <div>{{ message }}</div>
+    {% endif %}
+
+    <h1 class="add--event--h1">Login</h1>
+
+    <form class="add--event--form" method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <input id="username" class="form-control" autofocus type="text" name="username" placeholder="Username">
+
+        <input id="password" class="form-control" type="password" name="password" placeholder="Password">
+
+        <button type="submit">Login</button>
+        <p>Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
+    </form>
+{% endblock %}

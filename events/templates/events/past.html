@@ -1,0 +1,33 @@
+{% extends 'events/layout.html' %}
+
+{% block title %}Past Events{% endblock %}
+
+{% block status %}
+    <div class="navbar-nav me-auto mb-2 mb-lg-0">
+        <a href="{% url 'index' %}"><button class="btn btn-outline-success nav--button">Upcoming Events</button></a>
+        <a href="{% url 'past' %}"><button class="btn btn-outline-success nav--button active">Past Events</button></a>
+        <a href="{% url 'watchlist' %}"><button class="btn btn-outline-success nav--button">Watchlist</button></a>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <div class="event--container">
+        {% if events %}
+            {% for event in events %}
+            <div class="event--card">
+                <h2>{{ event.event_name }}</h2>
+                <br>
+                <p class="description">{{ event.short_description }}...</p>
+                <br>
+                <p>Event Date: {{ event.event_datetime }}</p>
+                <p>Event Location: {{ event.event_location }}</p>
+                <div class="event--buttons">
+                    <a href="{% url 'event' event.event_name %}"><button class="btn btn-outline-success event--button details">Details</button></a>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+        <p class="the--message">You have no past events.</p>
+        {% endif %}
+    </div>
+{% endblock %}

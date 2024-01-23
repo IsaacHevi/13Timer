@@ -1,0 +1,66 @@
+{% extends 'events/layout.html' %}
+
+{% block title %}Upcoming Events{% endblock %}
+
+{% block status %}
+    <div class="navbar-nav me-auto mb-2 mb-lg-0">
+        <a href="{% url 'index' %}"><button class="btn btn-outline-success nav--button">Upcoming Events</button></a>
+        <a href="{% url 'past' %}"><button class="btn btn-outline-success nav--button">Past Events</button></a>
+        <a href="{% url 'watchlist' %}"><button class="btn btn-outline-success nav--button">Watchlist</button></a>
+    </div>
+{% endblock %}
+
+{% block body %}
+
+    <h2 class="event--h1">Search results for {{ query }}</h2>
+
+    <div class="event--container">
+        {% if results %}
+        {% for event in results %}
+        <div class="event--card">
+            <h2>{{ event.event_name }}</h2>
+            <br>
+            <p class="description">{{ event.short_description }}...</p>
+            <br>
+            <p>Event Date: {{ event.event_datetime }}</p>
+            <p>Event Location: {{ event.event_location }}</p>
+            <div class="event--buttons">
+                <a href="{% url 'event' event.event_name %}"><button class="btn btn-outline-success event--button details">Details</button></a>
+                {% if event.status %}
+                <button class="btn btn-outline-success event--button add--to--watchlist" onclick="addToWatchlist('{{ event.event_name }}')">Add to Watchlist</button>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>No results found.</p>
+        {% endif %}
+    </div>
+
+    <script>
+        function addToWatchlist(eventName) {
+            // Construct the URL using the event name
+            var url = '/add_to_watchlist/' + eventName;
+
+            // Make an AJAX request to add the event to the watchlist
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ eventName: eventName }),
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert(`Added ${eventName} to your watchlist`);
+                } else {
+                    alert(`Failed to add ${eventName} to your watchlist`);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+    </script>
+
+{% endblock %}
